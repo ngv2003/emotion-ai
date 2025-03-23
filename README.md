@@ -6,11 +6,12 @@
 [![Build Status](https://app.travis-ci.com/susantabiswas/realtime-facial-emotion-analyzer.svg?branch=master)](https://app.travis-ci.com/susantabiswas/realtime-facial-emotion-analyzer)
 [![codecov](https://codecov.io/gh/susantabiswas/realtime-facial-emotion-analyzer/branch/master/graph/badge.svg?token=O7CRXABZEA)](https://codecov.io/gh/susantabiswas/realtime-facial-emotion-analyzer)
 
-
-
 # Realtime Emotion Analysis from facial Expressions
+
+Made a small change
+
 Real-time Human Emotion Analysis From facial expressions. It uses a deep Convolutional Neural Network.
-The model used achieved an accuracy of 63% on the test data. The realtime analyzer assigns a suitable emoji for the current emotion. 
+The model used achieved an accuracy of 63% on the test data. The realtime analyzer assigns a suitable emoji for the current emotion.
 
 There are 4 different face detectors for usage. Wrappers for video and webcam processing are provided for convenience.<br><br>
 
@@ -18,6 +19,7 @@ This emotion recognition library is built with ease and customization in mind. T
 <br>
 
 ## Table of Contents
+
 - [Sample Output](#sample-output)
 - [Architecture](#architecture)
 - [Setup](#setup)
@@ -28,9 +30,11 @@ This emotion recognition library is built with ease and customization in mind. T
 # Sample Output
 
 ## Processed Video
+
 <img src="data/media/output.gif"/><br>
 
 ## Processed Images
+
 <img src="data/media/out3.jpg" height="320" /><img src="data/media/out4.jpg" height="320" />
 <img src="data/media/out5.jpg" height="320" /><img src="data/media/out6.jpg" height="320" />
 <img src="data/media/1.JPG" height="320" /><img src="data/media/2.JPG" height="320" />
@@ -38,9 +42,10 @@ This emotion recognition library is built with ease and customization in mind. T
 
 For emotion recognition, flow is:
 
-    media -> frame -> face detection -> Facial ROI -> Convolutional Neural Network -> Emotion 
+    media -> frame -> face detection -> Facial ROI -> Convolutional Neural Network -> Emotion
 
 These are the major components:
+
 1. **Face Detection**: There are 4 different face detectors with different cropping options.
 2. **Emotion Recognition**: Responsible for handling emotion recognition related functionalities from an image.
 3. **Utilities**: Methods for handling image, video operations, validations, etc.
@@ -48,24 +53,29 @@ These are the major components:
 <br>
 
 # Setup
+
 There are multiple ways to set this up.
+
 ### Clone the repo and install dependencies.<br>
+
 ```python
 git clone https://github.com/susantabiswas/realtime-facial-emotion-analyzer.git
 pip install -r requirements.txt
 ```
 
 ### Docker Image
+
 You can pull the docker image for this project and run the code there.<br>
-```docker pull susantabiswas/emotion-analyzer:latest```
+`docker pull susantabiswas/emotion-analyzer:latest`
 
 ### Dockerfile
+
 You can build the docker image from the docker file present in the repo.
 
-```docker build -t <name> .```
-
+`docker build -t <name> .`
 
 # Project Structure
+
 ```
 
 realtime-facial-emotion-analyzer/
@@ -125,10 +135,11 @@ realtime-facial-emotion-analyzer/
 # Usage
 
 ### Emotion Recognition
+
 Depending on the use case, whether to aim for accuracy and stability or speed etc., you can pick the face detector. Also, there are customization options inside face detectors to decide the facial ROI.
 
-
 ### To analyze facial emotion using a webcam
+
 ```python
 # Inside project root
 import video_main
@@ -150,6 +161,7 @@ emotion_recognizer.emotion_analysis_video(
 ```
 
 ### To analyze facial emotion using a video file
+
 ```python
 # Inside project root
 import video_main
@@ -171,6 +183,7 @@ emotion_recognizer.emotion_analysis_video(
 ```
 
 ### Emotion recognition using an image
+
 ```python
 # Inside project root
 from emotion_analyzer.media_utils import load_image_path
@@ -186,8 +199,7 @@ img = load_image_path("data/sample/1.jpg")
 emotion, emotion_conf = emotion_detector.detect_facial_emotion(img)
 ```
 
-
-There are 4 face detectors namely dlib (HOG, MMOD), MTCNN, OpenCV (CNN). 
+There are 4 face detectors namely dlib (HOG, MMOD), MTCNN, OpenCV (CNN).
 All the face detectors are based on a common abstract class and have a common detection interface **detect_faces(image)**.
 
 ```python
@@ -202,14 +214,15 @@ image = load_image_path("data/sample/1.jpg")
 bboxes = face_detector.detect_faces(image)
 ```
 
-
 # Architecture
+
 ![architecture](data/media/model_plot.png)<br>
 <br>
 
 # References
-The awesome work Davis E. King has done: 
-http://dlib.net/cnn_face_detector.py.html, 
+
+The awesome work Davis E. King has done:
+http://dlib.net/cnn_face_detector.py.html,
 https://github.com/davisking/dlib-models<br>
 You can find more about MTCNN from here: https://github.com/ipazc/mtcnn
 <br>
